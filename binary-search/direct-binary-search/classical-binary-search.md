@@ -1,16 +1,16 @@
-LintCode 457: Classical Binary Search 解题报告
+LintCode 457: Classical Binary Search
 
-Problem:
+**Problem:**
 
 Find any position of a target number in a sorted array. Return -1 if target does not exist.
 
-Idea:
+**Idea:**
 
 if find target, return immediately
 
 Solution:
 
-```
+```python
 class Solution:
     # @param {int[]} A an integer array sorted in ascending order
     # @param {int} target an integer
@@ -35,6 +35,3 @@ class Solution:
             return end
         return -1
 ```
-
-
-

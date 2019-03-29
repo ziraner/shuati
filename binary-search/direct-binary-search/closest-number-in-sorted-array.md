@@ -1,12 +1,10 @@
-LintCode 459: Closest Number in Sorted Array 解题报告
+Closest Number in Sorted Array
 
-Problem:
+**Problem:**
 
-Given a target number and an integer array A sorted in ascending order, find the index`i`in A such that A\[i\] is closest to the given target.
+Given a target number and an integer array A sorted in ascending order, find the index `i` in A such that A\[i\] is closest to the given target. Return -1 if there is no element in the array.
 
-Return -1 if there is no element in the array.
-
-Exmaple:
+**Example:**
 
 Given`[1, 2, 3]`and target =`2`, return`1`.
 
@@ -16,17 +14,13 @@ Given`[1, 4, 6]`and target =`5`, return`1`or`2`.
 
 Given`[1, 3, 3, 4]`and target =`2`, return`0`or`1`or`2`.
 
-Idea:
+**Idea:**
 
-Similar to insert position, find first position idx that is &gt;= target;
-
-Then compare idx - 1\(if available\) with idx
-
-Corner Case: idx == 0, idx == n
+Similar to insert position, find first position idx that is &gt;= target; Then compare idx - 1\(if available\) with idx. Corner Case: idx == 0, idx == n
 
 Solution:
 
-```
+```python
 class Solution:
     # @param {int[]} A an integer array sorted in ascending order
     # @param {int} target an integer
@@ -59,6 +53,3 @@ class Solution:
             return end
         return end + 1
 ```
-
-
-

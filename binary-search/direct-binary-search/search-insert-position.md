@@ -1,10 +1,10 @@
 LintCode 60: Search Insert Position 解题报告
 
-Problem:
+**Problem:**
 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
-You may assume**NO**duplicates in the array.
+You may assume **NO** duplicates in the array.
 
 Example:
 
@@ -24,7 +24,7 @@ Be careful with Corner Case: 比第一个数小或者比最后一个数大
 
 Solution:
 
-```
+```python
 class Solution:
     """
     @param: A: an integer sorted array
@@ -35,8 +35,7 @@ class Solution:
         # write your code here
         if not A:
             return 0
-        n = len(A)
-        start, end = 0, n - 1
+        start, end = 0, len(A) - 1
         while start + 1 < end:
             mid = (start + end) / 2
             if A[mid] >= target:
@@ -49,6 +48,3 @@ class Solution:
             return end
         return end + 1
 ```
-
-
-

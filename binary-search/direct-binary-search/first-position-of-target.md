@@ -1,17 +1,18 @@
-LintCode 14: First Position of Target
+First Position of Target
 
-Problem:
+**Problem:**
+
 For a given sorted array \(ascending order\) and a `target` number, find the first index of this number in `O(log n)` time complexity.
 
 If the target number does not exist in the array, return`-1`.
 
-Idea:
+**Idea:**
 
 First Position of a target number: combine A\[mid\] == target and A\[mid\] &gt; target;
 
 Solution:
 
-```
+```python
 class Solution:
     # @param nums: The integer array
     # @param target: Target number to find
@@ -20,8 +21,7 @@ class Solution:
         # write your code here
         if not nums:
             return -1
-        n = len(nums)
-        start, end = 0, n - 1
+        start, end = 0, len(nums) - 1
         while start + 1 < end:
             mid = (start + end) / 2
             if nums[mid] >= target:
@@ -34,6 +34,3 @@ class Solution:
             return end
         return -1
 ```
-
-
-

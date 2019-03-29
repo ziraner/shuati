@@ -12,7 +12,7 @@ Idea
 
 方法一：用两个数组保存从该点向左看向右看看到的最高高度是多少left\[\], right\[\]
 
-```
+```python
 class Solution(object):
     def trap(self, height):
         """
@@ -39,7 +39,7 @@ class Solution(object):
 
 方法二：两根指针，另用两个变量保存左边和右边最高的边是什么
 
-```
+```python
 class Solution(object):
     def trap(self, height):
         """
@@ -68,6 +68,3 @@ class Solution(object):
                     rightHeight = height[right]
         return ans
 ```
-
-
-

@@ -1,10 +1,10 @@
-LintCode 458: Last Position of Target 解题报告
+LintCode 458: Last Position of Target
 
-Problem:
+**Problem:**
 
 Find the last position of a target number in a sorted array. Return -1 if target does not exist.
 
-Idea:
+**Idea:**
 
 Opposite to First Position:
 
@@ -12,7 +12,7 @@ Last Position of a target number: combine A\[mid\] == target and A\[mid\] &lt; t
 
 Solution:
 
-```
+```python
 class Solution:
     # @param {int[]} A an integer array sorted in ascending order
     # @param {int} target an integer
@@ -21,8 +21,7 @@ class Solution:
         # Write your code here
         if not A:
             return -1
-        n = len(A)
-        start, end = 0, n - 1
+        start, end = 0, len(A) - 1
         while start + 1 < end:
             mid = (start + end) / 2
             if A[mid] > target:
@@ -35,6 +34,3 @@ class Solution:
             return start
         return -1
 ```
-
-
-
