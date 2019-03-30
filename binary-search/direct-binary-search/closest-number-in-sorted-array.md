@@ -16,40 +16,72 @@ Given`[1, 3, 3, 4]`and target =`2`, return`0`or`1`or`2`.
 
 **Idea:**
 
-Similar to insert position, find first position idx that is &gt;= target; Then compare idx - 1\(if available\) with idx. Corner Case: idx == 0, idx == n
+Two possible ideas, find first position idx that is &gt;= target; Then compare idx - 1\(if available\) and idx.
 
-Solution:
+**Solution:**
 
 ```python
 class Solution:
-    # @param {int[]} A an integer array sorted in ascending order
-    # @param {int} target an integer
-    # @return {int} an integer
+    """
+    @param A: an integer array sorted in ascending order
+    @param target: An integer
+    @return: an integer
+    """
     def closestNumber(self, A, target):
-        # Write your code here
-        if not A:
-            return -1
-        n = len(A)
-        idx = self.firstPosition(A, target)
+        # write your code here
+        idx = self.findFirstPosition(A, target)
         if idx == 0:
-            return 0
-        if idx == n:
-            return n - 1
-        if target - A[idx - 1] <= A[idx] - target:
+            return idx
+        if target - A[idx - 1] < A[idx] - target:
             return idx - 1
         return idx
-    def firstPosition(self, A, target):
-        n = len(A)
-        start, end = 0, n - 1
+
+    # find first position that is >= target
+    def findFirstPosition(self, A, target):
+        start, end = 0, len(A) - 1
         while start + 1 < end:
             mid = (start + end) / 2
-            if A[mid] >= target:
-                end = mid
-            else:
+            if A[mid] <= target:
                 start = mid
+            else:
+                end = mid
         if A[start] >= target:
             return start
-        if A[end] >= target:
+        return end
+```
+
+**Idea:**
+
+Another possible solution is to find the last position that is <= target; Then compare idx and idx + 1\(if applicable\).
+
+**Solution:**
+
+```python
+class Solution:
+    """
+    @param A: an integer array sorted in ascending order
+    @param target: An integer
+    @return: an integer
+    """
+    def closestNumber(self, A, target):
+        # write your code here
+        idx = self.findLastPosition(A, target)
+        if idx == len(A) -1:
+            return idx
+        if A[idx + 1] - target < target - A[idx]:
+            return idx + 1
+        return idx
+
+    # find last position that is <= target
+    def findLastPosition(self, A, target):
+        start, end = 0, len(A) - 1
+        while start + 1 < end:
+            mid = (start + end) / 2
+            if A[mid] <= target:
+                start = mid
+            else:
+                end = mid
+        if A[end] <= target:
             return end
-        return end + 1
+        return start
 ```
