@@ -1,4 +1,6 @@
-# Summary
+#
+
+ Summary
 
 * [Binary Search: 九章28题，强化2题，扩展6题](binary-search.md)
   * [Direct Binary Search](binary-search/direct-binary-search.md)
