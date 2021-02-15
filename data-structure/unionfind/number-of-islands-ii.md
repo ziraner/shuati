@@ -8,10 +8,10 @@ We return the result as an array:`[1, 1, 2, 3]`
 
 Idea:
 
-UnionFind，时间复杂度O\(n \* m\) + O\(4 \* k\)  
+UnionFind，时间复杂度O\(n \* m\) + O\(4 \* k\)
 用一个flag数组记录当前点是否被访问（即当前岛屿和海洋的status），用一个cnt变量记录当前一共加入了多少个岛屿（重复加入的不算）；在UnionFind中开一个变量cnt记录当前没有联通的数量
 
-```
+```python
 class Solution(object):
     def numIslands2(self, m, n, positions):
         """
@@ -52,6 +52,3 @@ class UnionFind:
     def query(self, ):
         return self.count
 ```
-
-
-

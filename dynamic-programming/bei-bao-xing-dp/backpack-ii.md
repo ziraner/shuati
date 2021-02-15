@@ -1,6 +1,6 @@
 Backpack II 解题报告
 
-Given_n\_items with size Aiand value Vi, and a backpack with size\_m_. What's the maximum value can you put into the backpack?
+Given n items with size Ai and value Vi, and a backpack with size m. What's the maximum value can you put into the backpack?
 
 **Example**
 
@@ -8,13 +8,13 @@ Given 4 items with size`[2, 3, 5, 7]`and value`[1, 5, 2, 4]`, and a backpack wit
 
 带价值的背包问题
 
-f\[i\]\[j\] 表示前i个物品当中选一些物品组成容量为j的最大价值
+1. 定义：f[i][j] 表示前i个物品当中选一些物品组成容量为j的最大价值
 
-f\[i\]\[j\] = max\(f\[i-1\]\[j\], f\[i-1\]\[j-A\[i-1\]\] + V\[i-1\]\);
+2. 转移方程：f[i][j] = max(f[i-1][j], f[i-1][j-A[i-1]] + V[i-1]);
 
-f\[0\]\[0\]=0
+3. 初始化：f[0][0]=0
 
-f\[n\]\[s\]
+4. 答案：f[n][S]
 
 ```
 class Solution:
@@ -38,6 +38,3 @@ class Solution:
                     f[i % 2][j] = max(val, f[(i - 1) % 2][j])
         return f[n % 2][m]
 ```
-
-
-

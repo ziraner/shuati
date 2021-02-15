@@ -9,7 +9,7 @@ Design and implement a data structure for Least Recently Used \(LRU\) cache. It 
 dict = {key: current node}; DoublyLinkedList: val, key, prev, next.  
 Cache: head, tail = node, node; head.next = tail, tail.prev = head
 
-```
+```python
 class LRUCache(object):
 
     def __init__(self, capacity):
@@ -81,7 +81,7 @@ Cache: head = tail = node
 
 经验是 不要写好几个函数，就把代码写在要求的函数里，好整。每次删完了node需要判断是否是tail
 
-```
+```python
 class LRUCache(object):
 
     def __init__(self, capacity):
@@ -150,6 +150,3 @@ class SinglyListNode:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
-
-
-

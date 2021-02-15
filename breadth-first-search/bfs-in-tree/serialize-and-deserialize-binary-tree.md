@@ -26,7 +26,7 @@ deserialize跟serialize类似，idx要对应q中两个元素，所以需要一�
 
 最后不要忘了corner case root 为空需要单独判断
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -87,6 +87,3 @@ class Codec:
 # codec = Codec()
 # codec.deserialize(codec.serialize(root))
 ```
-
-
-

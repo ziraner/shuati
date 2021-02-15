@@ -20,11 +20,13 @@ Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal numb
 
 Idea:
 
-当遇到0 presum -1 当遇到1 presum +1
+是preSum: continuous number sum is zero的特殊情况。
+可以将0看成-1，遇到0的时候presum -1，遇到1的时候presum +1；则问题转换成continuous number sum is zero.
+用一hashmap保存之前出现过的presum值。如果遇到相同值，则更新ans；遇到不同的值将值和index存进map。
 
-用一hashmap保存之前出现过的presum值，如果遇到相同值 更新ans；遇到不同值 加入hashmap
-
-```
+**Solution**
+1. python
+```python
 class Solution(object):
     def findMaxLength(self, nums):
         """
@@ -43,5 +45,32 @@ class Solution(object):
         return ans
 ```
 
-
-
+2. java
+```java
+public class Solution {
+    /**
+     * @param nums: a binary array
+     * @return: the maximum length of a contiguous subarray
+     */
+    public int findMaxLength(int[] nums) {
+        // Write your code here
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int ans = 0;
+        int preSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                preSum--;
+            } else {
+                preSum++;
+            }
+            if (map.containsKey(preSum)) {
+                ans = Math.max(ans, i - map.get(preSum));
+            } else {
+                map.put(preSum, i);
+            }
+        }
+        return ans;
+    }
+}
+```

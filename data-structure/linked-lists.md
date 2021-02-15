@@ -1,12 +1,38 @@
-linkedlist 大多数都是基本操作的扩展，基本操作包括：
+linkedlist 基础知识
 
-dummy node使用
+LinkedList 种类:
+1. doubly LinkedList
+2. singly LinkedList
 
-找中点
+LinkedList 基本操作：
+1. dummy node
+2. middle node
+3. reverse
+4. hasCycle
 
-找环
+java
+```
+class DoublyLinkedList {
+  Node head = new Node(-1, -1);
+  Node tail = new Node(-1, -1);
 
-reverse，带返回的reverse
+  public DoublyLinkedList(int value) {
+    head.next = tail;
+    tail.prev = head;
+  }
 
+  public void remove(Node node) {
+    node.next.prev = node.prev;
+    node.prev.next = node.next;
+  }
 
-
+  private class Node {
+    int valule;
+    Node next;
+    Node prev;
+    public Node(int value) {
+      this.value = value;
+    }
+  }
+}
+```

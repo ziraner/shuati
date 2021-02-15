@@ -1,4 +1,6 @@
-Binary Tree Paths 解题报告
+LintCode 480. Binary Tree Paths
+
+**Problem**
 
 Given a binary tree, return all root-to-leaf paths.
 
@@ -20,11 +22,11 @@ All root-to-leaf paths are:
 
 Idea:
 
-Divide & Conquer. 
+Divide & Conquer.
 
 将从左子树得到的path加入当前节点，将整体加入当前解；将右子树得到path加入当前节点，将整体加入当前解。注意判断当前点是leaf的情况，也就是左右子树的paths都是空， 这时不加入“-&gt;”符号
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -51,6 +53,3 @@ class Solution(object):
             ans.append(str(root.val))
         return ans
 ```
-
-
-

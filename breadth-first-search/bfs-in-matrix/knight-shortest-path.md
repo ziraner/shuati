@@ -3,7 +3,7 @@ Knight Shortest Path 解题报告
 Given a knight in a chessboard \(a binary matrix with`0`as empty and`1`as barrier\) with a`source`position, find the shortest path to a`destination`position, return the length of the route.  
 Return`-1`if knight can not reached.
 
-##### Notice
+**Notice**
 
 source and destination must be empty.  
 Knight can not enter the barrier.
@@ -55,7 +55,7 @@ class Solution:
     # @param {boolean[][]} grid a chessboard included 0 (False) and 1 (True)
     # @param {Point} source a point
     # @param {Point} destination a point
-    # @return {int} the shortest path 
+    # @return {int} the shortest path
     def shortestPath(self, grid, source, destination):
         # Write your code here
         # corner case:
@@ -99,6 +99,3 @@ class Solution:
             return False
         return True
 ```
-
-
-

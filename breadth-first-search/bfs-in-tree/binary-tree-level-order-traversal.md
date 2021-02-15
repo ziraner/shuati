@@ -1,8 +1,10 @@
-Binary Tree Level Order Traversal 解题报告
+LintCode 69. Binary Tree Level Order Traversal
+
+**Problem**
 
 Given a binary tree, return thelevel ordertraversal of its nodes' values. \(ie, from left to right, level by level\).
 
-For example:
+**Example**
 
 Given binary tree`[3,9,20,null,null,15,7]`,
 
@@ -24,11 +26,11 @@ return its level order traversal as:
 ]
 ```
 
-Idea:
+**Idea**
 
-分层BFS，需要多一层循环来固定q中的当前层的size
+分层BFS，需要多一层循环来固定queue中的当前层的size
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -58,6 +60,3 @@ class Solution(object):
             ans.append(level[:])
         return ans
 ```
-
-
-

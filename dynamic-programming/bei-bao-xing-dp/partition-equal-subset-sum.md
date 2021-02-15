@@ -1,8 +1,8 @@
 Partition Equal Subset Sum 解题报告
 
-Given a`non-empty`array containing`only positive integers`, find if the array can be partitioned into`two`subsets such that the sum of elements in both subsets is equal.
+Given a `non-empty` array containing `only positive integers`, find if the array can be partitioned into `two` subsets such that the sum of elements in both subsets is equal.
 
-##### Notice
+**Notice**
 
 Each of the array element will not exceed 100.  
 The array size will not exceed 200.
@@ -18,7 +18,7 @@ Given nums =`[1, 2, 3, 9]`, return`false`
 
 backpack问题的变形，可以用滚动数组优化最后
 
-```
+```python
 class Solution:
     """
     @param: nums: a non-empty array only positive integers
@@ -43,6 +43,3 @@ class Solution:
         return f[n][target]
 
 ```
-
-
-

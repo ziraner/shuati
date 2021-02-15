@@ -1,4 +1,4 @@
-First Position of Target
+Lintcode 14: First Position of Target
 
 **Problem:**
 
@@ -16,7 +16,7 @@ Solution:
 class Solution:
     # @param nums: The integer array
     # @param target: Target number to find
-    # @return the first position of target in nums, position start from 0 
+    # @return the first position of target in nums, position start from 0
     def binarySearch(self, nums, target):
         # write your code here
         if not nums:

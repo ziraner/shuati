@@ -1,6 +1,6 @@
-Walls and Gates 解题报告 Lintcode: Nearest Exit
+Walls and Gates 解题报告
 
-You are given am x n2D grid initialized with these three possible values.
+You are given a m x n 2D grid initialized with these three possible values.
 
 1. `-1`- A wall or an obstacle.
 2. `0` - A gate.
@@ -28,7 +28,11 @@ After running your function, the 2D grid should be:
 
 思路：矩阵里面的BFS，以每一个gate为起点做BFS，如果当前的distance比原来的小则更新否则不更新
 
-```
+此题不需要额外矩阵，原room矩阵可以直接用来更新
+
+**Solution:**
+1. python
+```python
 class Solution(object):
     def wallsAndGates(self, rooms):
         """
@@ -52,11 +56,54 @@ class Solution(object):
                     rooms[xx][yy] = rooms[x][y] + 1
                     q.append((xx, yy))
 ```
+2. java
+```java
+public class Solution {
+    /**
+     * @param rooms: m x n 2D grid
+     * @return: nothing
+     */
+    public void wallsAndGates(int[][] rooms) {
+        // write your code here
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[0].length; j++) {
+                if (rooms[i][j] == 0) {
+                    bfs(i, j, rooms);
+                }
+            }
+        }
+    }
 
+    private void bfs(int startX, int startY, int[][] rooms) {
+        int n = rooms.length;
+        int m = rooms[0].length;
 
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(m * startX + startY);
 
-  
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
 
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+            int x = cur / m;
+            int y = cur % m;
+            for (int i = 0; i < dx.length; i++) {
+                int newx = x + dx[i];
+                int newy = y + dy[i];
+                if (newx < 0 || newx >= n || newy < 0 || newy >= m) {
+                    continue;
+                }
 
+                int newDist = rooms[x][y] + 1;
+                if (newDist >= rooms[newx][newy]) {
+                    continue;
+                }
 
-
+                rooms[newx][newy] = newDist;
+                queue.offer(newx * m + newy);
+            }
+        }
+    }
+}
+```

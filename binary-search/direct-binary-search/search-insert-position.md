@@ -1,4 +1,4 @@
-LintCode 60: Search Insert Position 解题报告
+LintCode 60: Search Insert Position
 
 **Problem:**
 
@@ -20,7 +20,7 @@ Idea:
 
 Use Binary Search to find the first element that is &gt;= a target number
 
-Be careful with Corner Case: 比第一个数小或者比最后一个数大
+Corner Case: 比第一个数小或者比最后一个数大
 
 Solution:
 

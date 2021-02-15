@@ -1,10 +1,10 @@
-Find Smallest Letter Greater Than Target
+Lintcode 1056: Find Smallest Letter Greater Than Target
 
 **Problem:**
 
-Given a list of sorted characters`letters`containing only lowercase letters, and given a target letter`target`, find the smallest element in the list that is larger than the given target.
+Given a list of sorted characters `letters` containing only lowercase letters, and given a target letter `target`, find the smallest element in the list that is larger than the given target.
 
-Letters also wrap around. For example, if the target is`target = 'z'`and`letters = ['a', 'b']`, the answer is`'a'`.
+Letters also wrap around. For example, if the target is `target = 'z'` and `letters = ['a', 'b']`, the answer is`'a'`.
 
 **Examples:**
 
@@ -42,7 +42,7 @@ Output:"c"
 
 **Idea:**
 
-LinkedIn高频之一。面试时候不会告诉corner case，要自己问清楚比如字符大于等于最后一个字符怎么办
+LinkedIn高频。面试时候不会告诉corner case，要自己问清楚比如字符大于等于最后一个字符怎么办
 
 Solution:
 
