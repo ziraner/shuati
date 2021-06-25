@@ -52,11 +52,49 @@ class Solution(object):
         return graph
 ```
 
+```java
+class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        if (n == 0 || edges.length != n -1)
+            return false;
+
+        Map<Integer, Set<Integer>> graph = initializeGraph(n, edges);
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        queue.offer(0);
+        visited.add(0);
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            for (Integer neighbor : graph.get(node)) {
+                if (visited.contains(neighbor)) continue;
+                queue.offer(neighbor);
+                visited.add(neighbor);
+            }
+        }
+        return visited.size() == n;
+    }
+
+    private Map<Integer, Set<Integer>> initializeGraph(int n, int[][] edges) {
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            graph.put(i, new HashSet<>());
+        }
+
+        for (int i = 0; i < edges.length; i++) {
+            graph.get(edges[i][0]).add(edges[i][1]);
+            graph.get(edges[i][1]).add(edges[i][0]);
+        }
+        return graph;
+    }
+}
+```
+
 方法二：union find
 
 先判断edges的数量是n - 1。然后将边两两联通，在联通之前如果这两个点已经联通了说明有环，不能构成树，否则则可以构成树
 
-```
+```py
 class Solution(object):
     def validTree(self, n, edges):
         """
@@ -69,7 +107,7 @@ class Solution(object):
         uf = UnionFind(n)
         for u, v in edges:
             # before u, v union, they cannot be connected, otherwise it's a loop
-            if uf.find(u) == uf.find(v):
+            if uf.find(u) == uf.find(v):  
                 return False
             uf.union(u, v)
         return True
@@ -86,4 +124,59 @@ class UnionFind:
         root_b = self.find(b)
         if root_a != root_b:
             self.father[root_a] = root_b
+```
+
+```java
+class Solution {
+    class UnionFind {
+        Map<Integer, Integer> father = new HashMap<>();
+        UnionFind(int n) {
+            for (int i = 0; i < n; i++) {
+                father.put(i, i);
+            }
+        }
+
+        int compressed_find(int x) {
+            int parent = x;
+            while (parent != father.get(parent)) {
+                parent = father.get(parent);
+            }
+
+            int temp = Integer.MIN_VALUE;
+            int fa = x;
+            while (fa != father.get(fa)) {
+                temp = father.get(fa);
+                father.put(fa, parent);
+                fa = temp;
+            }
+            return parent;
+        }
+
+        void union(int x, int y) {
+            int fa_x = compressed_find(x);
+            int fa_y = compressed_find(y);
+            if (fa_x != fa_y) {
+                father.put(fa_x, fa_y);
+            }
+        }
+    }
+
+    public boolean validTree(int n, int[][] edges) {
+        if (n == 0 || edges.length != n - 1) {
+            return false;
+        }
+
+        UnionFind uf = new UnionFind(n);
+        for (int i = 0; i < edges.length; i++) {
+            int u = edges[i][0];
+            int v = edges[i][1];
+            if (uf.compressed_find(u) == uf.compressed_find(v)) {
+                return false;
+            }
+            uf.union(u, v);
+        }
+
+        return true;
+    }
+}
 ```

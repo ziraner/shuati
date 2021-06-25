@@ -28,7 +28,7 @@ Idea:
 2.将indegree为0的先入q  
 3.对graph按照indegree做BFS，将indegree减少到0的node入列，统计pop的数目和最后的numCourses对比
 
-```
+```py
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
@@ -58,5 +58,49 @@ class Solution(object):
         return cnt == numCourses
 ```
 
+```java
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (numCourses == 0 || prerequisites == null || prerequisites.length == 0) {
+            return true;
+        }
 
+        Map<Integer, Integer> indegree = new HashMap<>();
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+        for (int[] prerequisite: prerequisites) {
+            int count = indegree.containsKey(prerequisite[0]) ? indegree.get(prerequisite[0]) : 0;
+            indegree.put(prerequisite[0], count + 1);
 
+            if (!graph.containsKey(prerequisite[1])) {
+                graph.put(prerequisite[1], new HashSet<>());
+            }
+            graph.get(prerequisite[1]).add(prerequisite[0]);    
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (!indegree.containsKey(i)) {
+                queue.offer(i);
+            }
+        }
+
+        int pollTimes = 0;
+        while(!queue.isEmpty()) {
+            int element = queue.poll();
+            pollTimes++;
+            if (!graph.containsKey(element)) {
+                continue;
+            }
+            for (int neighbor: graph.get(element)) {
+                int count = indegree.get(neighbor);
+                if (count == 1) {
+                    queue.offer(neighbor);
+                }
+                indegree.put(neighbor, count - 1);
+            }
+        }
+
+        return pollTimes == numCourses;
+    }
+}
+```

@@ -28,7 +28,7 @@ Idea:
 
 这个题目和I的区别在于要输出上课的顺序。用ans数组记录pop出来的数，最后比较ans的lengh和courseNums如果相等则输出，如果不等说明不能够上完课，则输出空数组
 
-```
+```py
 class Solution(object):
     def findOrder(self, numCourses, prerequisites):
         """
@@ -58,5 +58,51 @@ class Solution(object):
         return []
 ```
 
+```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {        
+        Map<Integer, Integer> indegree = new HashMap<>();
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
 
+        for (int[] prereq: prerequisites) {
+            int count = indegree.containsKey(prereq[0]) ? indegree.get(prereq[0]) : 0;
+            indegree.put(prereq[0], count + 1);
 
+            if (!graph.containsKey(prereq[1])) {
+                graph.put(prereq[1], new HashSet<>());
+            }
+            graph.get(prereq[1]).add(prereq[0]);
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (!indegree.containsKey(i)) {
+                queue.offer(i);
+            }
+        }
+
+        int pollTimes = 0;
+        int[] result = new int[numCourses];
+        while (!queue.isEmpty()) {
+            int element = queue.poll();
+            result[pollTimes] = element;
+            pollTimes++;
+            if (!graph.containsKey(element)) {
+                continue;
+            }
+            for (int neighbor: graph.get(element)) {
+                int count = indegree.get(neighbor);
+                if (count == 1) {
+                    queue.offer(neighbor);
+                }
+                indegree.put(neighbor, count - 1);
+            }
+        }
+
+        if (pollTimes == numCourses) {
+            return result;
+        }
+        return new int[0];
+    }
+}
+```
